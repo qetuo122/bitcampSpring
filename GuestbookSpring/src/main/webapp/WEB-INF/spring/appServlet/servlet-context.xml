@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<context:component-scan base-package="com.bitcamp.gp" />
+	
+	<!-- DataSource 빈 등록 -->
+	<beans:bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<beans:property name="driverClass" value="oracle.jdbc.driver.OracleDriver" />
+		<beans:property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1522:orcl" />
+		<beans:property name="user" value="scott" />
+		<beans:property name="password" value="tiger" />
+	</beans:bean>
+	
+	<!-- JDBCTemplate 빈 등록 -->
+	<beans:bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate" p:dataSource-ref="dataSource" />
+	
+	<!--DAO 빈 등록  -->
+	<beans:bean id = "messageDao" class = "com.bitcamp.gp.dao.MessageDao"/>
+	<beans:bean id = "jdbcTemplateMessageDao" class = "com.bitcamp.gp.dao.JdbcTemplateMessageDao"/>
+	
+	<!-- 서비스 빈 등록 -->
+	<beans:bean id = "getMessageListService" class = "com.bitcamp.gp.service.GetMessageListService"/>
+	<beans:bean id = "writeMessageService" class = "com.bitcamp.gp.service.WriteMessageService"/>
+	<beans:bean id = "deleteMessageService" class = "com.bitcamp.gp.service.DeleteMessageService"></beans:bean>
+	<beans:bean id = "getMessageService" class = "com.bitcamp.gp.service.GetMessageService"></beans:bean>
+	
+</beans:beans>
