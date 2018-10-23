@@ -19,29 +19,13 @@ public class GuestBookDeleteController {
 
 	@RequestMapping("/guest/delete")
 	public String deleteMessage(
-			@RequestParam("id") int messageId) {
+			@RequestParam("id") int messageId) throws ServiceException, InvalidMessagePassowrdException, MessageNotFoundException {
 		
-		String viewName = "redirect:/guest/messageList";
+		//클릭한 메세지번호(id)를 불러와 삭제처리
+		service.deleteMessage(messageId);
 		
-		try {
-			
-			//클릭한 메세지번호(id)를 불러와 삭제처리
-			service.deleteMessage(messageId);
 		
-		} catch (ServiceException e) {
-			
-			viewName = "guest/error";
-			
-		} catch (InvalidMessagePassowrdException e) {
-			
-			//비밀번호가 맞지 않을때
-			viewName = "redirect:/guest/delete?id=" + messageId;
-			
-		} catch (MessageNotFoundException e) {
-			//게시물이 없을때
-			viewName = "redirect:/guest/messageList";
-		}
+		return "redirect:/guest/messageList";
 		
-		return viewName;
 	}
 }
