@@ -78,7 +78,7 @@ public class MessageDao {
 	private Message makeMessageFromResultSet(ResultSet rs) throws SQLException {
 		Message message = new Message();
 		MemberInfo memberInfo = new MemberInfo();
-		message.setId(rs.getInt("message_id"));
+		message.setMessage_id(rs.getInt("message_id"));
 		memberInfo.setUserId(rs.getString("userId_member"));
 		message.setMessage(rs.getString("message"));
 		return message;

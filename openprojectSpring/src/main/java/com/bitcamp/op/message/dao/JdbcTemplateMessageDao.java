@@ -49,7 +49,7 @@ public class JdbcTemplateMessageDao {
 
 				Message message = new Message();
 
-				message.setId(rs.getInt("message_id"));
+				message.setMessage_id(rs.getInt("message_id"));
 				message.setUserid_member(rs.getString("userid_member"));
 				message.setMessage(rs.getString("message"));
 
@@ -78,7 +78,7 @@ public class JdbcTemplateMessageDao {
 			public Message mapRow(ResultSet rs, int rowNum) throws SQLException {
 				
 				Message message = new Message();
-				message.setId(rs.getInt("message_id"));
+				message.setMessage_id(rs.getInt("message_id"));
 				message.setUserid_member(rs.getString("userid_member"));
 				message.setMessage(rs.getString("message"));
 				

@@ -7,14 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bitcamp.op.jdbc.ConnectionProvider;
 import com.bitcamp.op.jdbc.JdbcUtil;
-import com.bitcamp.op.message.dao.MessageDao;
+import com.bitcamp.op.message.dao.MybatisMessageDao;
 import com.bitcamp.op.message.model.Message;
 
 
 public class DeleteMessageService {
 
+	/*@Autowired
+	MessageDao messageDao;*/
+	
 	@Autowired
-	MessageDao messageDao;
+	private MybatisMessageDao messageDao;
 
 	public void deleteMessage(int messageId)
 			throws ServiceException, InvalidMessagePassowrdException, MessageNotFoundException {
@@ -25,12 +28,12 @@ public class DeleteMessageService {
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);
 			
-			Message message = messageDao.select(conn, messageId);
+			Message message = messageDao.select(messageId);
 			if (message == null) {
 				throw new MessageNotFoundException("메시지가 없습니다:" + messageId);
 			}
 			
-			messageDao.delete(conn, messageId);
+			messageDao.delete(messageId);
 			conn.commit();
 		} catch (SQLException ex) {
 			JdbcUtil.rollback(conn);

@@ -28,7 +28,6 @@ public class GuestbookViewController {
 		model.addAttribute("userid_member",message.getUserid_member());
 		model.addAttribute("message",message.getMessage());
 		
-		
 		return "guest/view";
 	}
 }

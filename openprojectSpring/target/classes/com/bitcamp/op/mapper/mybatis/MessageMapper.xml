@@ -35,16 +35,12 @@
 	
 	</select>
 	
-	<delete id = "deleteMember" 
-	parameterType = "com.bitcamp.op.member.model.MemberInfo">
+	<delete id = "deleteMessage" 
+	parameterType = "com.bitcamp.op.message.model.Message">
 	
-	delete from member where userid = #{id}
+	delete from guestbook_message where message_id = #{message_id}
 	
 	</delete>
 	
-	<update id="modiMember" parameterType = "com.bitcamp.op.member.model.MemberInfo" >
 	
-	update member set password = #{password}, username = #{userName}, userphoto = #{userPhoto} where userid = #{userId}
-	
-	</update>
 </mapper>

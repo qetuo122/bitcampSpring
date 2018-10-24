@@ -25,10 +25,6 @@ public class GetMessageService {
 	
 	public Message getMessage(int id) throws SQLException {
 		
-		Connection conn = null;
-		
-		conn = ConnectionProvider.getConnection();
-		
 		int messageTotalCount = messageDao.selectCount();
 		
 		Message message = null;
