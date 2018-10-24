@@ -24,8 +24,6 @@ public class GuestbookViewController {
 		
 		Message message = service.getMessage(id);
 		
-		System.out.println(message.getUserid_member());
-		System.out.println(message.getMessage());
 		model.addAttribute("id", id);
 		model.addAttribute("userid_member",message.getUserid_member());
 		model.addAttribute("message",message.getMessage());

@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bitcamp.op.jdbc.ConnectionProvider;
 import com.bitcamp.op.jdbc.JdbcUtil;
-import com.bitcamp.op.message.dao.JdbcTemplateMessageDao;
+import com.bitcamp.op.message.dao.MybatisMessageDao;
 import com.bitcamp.op.message.model.Message;
 import com.bitcamp.op.message.model.MessageListView;
 
@@ -19,9 +19,12 @@ public class GetMessageListService {
 	/*@Autowired
 	MessageDao messageDao;*/
 	
-	@Autowired
-	JdbcTemplateMessageDao messageDao;
+	/*@Autowired
+	JdbcTemplateMessageDao messageDao;*/
 
+	@Autowired
+	private MybatisMessageDao messageDao;
+	
 	// 한 페이지에 보여줄 메시지의 수
 	private static final int MESSAGE_COUNT_PER_PAGE = 3;
 
@@ -33,18 +36,20 @@ public class GetMessageListService {
 			conn = ConnectionProvider.getConnection();
 			
 			// 전체 메시지 구하기
-			int messageTotalCount = messageDao.selectCount(conn);
+			int messageTotalCount = messageDao.selectCount();
+			
 			List<Message> messageList = null;
 			int firstRow = 0;
 			int endRow = 0;
 			if (messageTotalCount > 0) {
 				firstRow = (pageNumber - 1) * MESSAGE_COUNT_PER_PAGE;
 				endRow = firstRow + MESSAGE_COUNT_PER_PAGE - 1;
-				messageList = messageDao.selectList(firstRow, MESSAGE_COUNT_PER_PAGE);
+				messageList = messageDao.selectList(firstRow);
 			} else {
 				currentPageNumber = 0;
 				messageList = Collections.emptyList();
 			}
+			System.out.println(messageList);
 			return new MessageListView(messageList, messageTotalCount, currentPageNumber, MESSAGE_COUNT_PER_PAGE,
 					firstRow, endRow);
 		} catch (SQLException e) {

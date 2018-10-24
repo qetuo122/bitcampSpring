@@ -3,11 +3,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../css/default.css">
 <title>Insert title here</title>
 </head>
 <body>
-
-로그인확인(포스트처리) : ${userId} : ${password}
-세션확인 : ${loginInfo}
+<%@ include file="/WEB-INF/views/common/header.jsp" %>
+<h2>아이디 혹은 비밀번호가 틀렸습니다. 다시 입력해주세요</h2>
+<h2><a href = "login">로그인</a></h2>
 </body>
 </html>

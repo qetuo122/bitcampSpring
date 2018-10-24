@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+				"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+				
+		<!-- namepsace는 필수로 정해줘야함 -->
+<mapper namespace = "com.bitcamp.op.mapper.mybatis.MemberMapper">
+	
+	<insert id="insertMember" 
+		parameterType="com.bitcamp.op.member.model.MemberInfo"
+		useGeneratedKeys="true" keyProperty="idx">
+					<!-- member테이블에 있는 컬럼명을 입력한다. -->
+	insert into member (userid, password, username, userphoto)
+	value ( #{userId}, #{password}, #{userName}, #{userPhoto})
+			<!-- memberInfo에 있는 변수명을 입력해준다. -->
+	</insert>
+	
+	<select id="selectById" 
+	resultType = "com.bitcamp.op.member.model.MemberInfo">
+	
+	select * from member where userid = #{id}
+	
+	</select>
+	
+	<select id="selectMember" 
+	resultType = "com.bitcamp.op.member.model.MemberInfo">
+	
+	select * from member
+	
+	</select>
+	
+	<delete id = "deleteMember" 
+	parameterType = "com.bitcamp.op.member.model.MemberInfo">
+	
+	delete from member where userid = #{id}
+	
+	</delete>
+	
+	<update id="modiMember" parameterType = "com.bitcamp.op.member.model.MemberInfo" >
+	
+	update member set password = #{password}, username = #{userName}, userphoto = #{userPhoto} where userid = #{userId}
+	
+	</update>
+</mapper>

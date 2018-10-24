@@ -7,13 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bitcamp.op.jdbc.JdbcUtil;
 import com.bitcamp.op.jdbc.ConnectionProvider;
-import com.bitcamp.op.member.dao.MemberDao;
+import com.bitcamp.op.member.dao.MybatisMemberDao;
 import com.bitcamp.op.member.model.MemberInfo;
 
 public class MemberDeleteService {
 	
+	/*@Autowired
+	MemberDao memberDao;*/
+	
 	@Autowired
-	MemberDao memberDao;
+	private MybatisMemberDao memberDao;
 	
 	public void deleteMember(String userId, String password) throws InvalidmemberPassowrdException {
 		
@@ -24,7 +27,7 @@ public class MemberDeleteService {
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);
 			
-			MemberInfo memberInfo = memberDao.getMemberInfo(conn, userId);
+			MemberInfo memberInfo = memberDao.getMemberInfo(userId);
 			
 			if(!memberInfo.getPassword().equals(password) && password != null && !password.isEmpty()) {
 				
@@ -32,7 +35,7 @@ public class MemberDeleteService {
 				
 			}
 			
-			memberDao.delete(conn, userId);
+			memberDao.delete(userId);
 			conn.commit();
 			
 		} catch (SQLException e) {

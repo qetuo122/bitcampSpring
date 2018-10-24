@@ -8,13 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bitcamp.op.jdbc.JdbcUtil;
 import com.bitcamp.op.jdbc.ConnectionProvider;
-import com.bitcamp.op.member.dao.MemberDao;
+import com.bitcamp.op.member.dao.MybatisMemberDao;
 import com.bitcamp.op.member.model.MemberInfo;
 
 public class MemberListService {
 	
+	/*@Autowired
+	MemberDao memberDao;*/
+	
 	@Autowired
-	MemberDao memberDao;
+	private MybatisMemberDao memberDao;
 	
 	public List<MemberInfo> getMemberList(){
 		
@@ -24,7 +27,7 @@ public class MemberListService {
 		try {
 			
 			conn = ConnectionProvider.getConnection();
-			memberList = memberDao.selectList(conn);
+			memberList = memberDao.selectList();
 			
 		} catch (SQLException e) {
 			

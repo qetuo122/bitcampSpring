@@ -1,16 +1,16 @@
 package com.bitcamp.op.message.model;
 
 public class Message {
-	private int id;
+	private int message_id;
 	private String userid_member;
 	private String message;
 
-	public int getId() {
-		return id;
+	public int getMessage_id() {
+		return message_id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setMessage_id(int message_id) {
+		this.message_id = message_id;
 	}
 
 	public String getUserid_member() {
@@ -31,7 +31,7 @@ public class Message {
 
 	@Override
 	public String toString() {
-		return "Message [id=" + id + ", userid_member=" + userid_member + ", message=" + message + "]";
+		return "Message [message_id=" + message_id + ", userid_member=" + userid_member + ", message=" + message + "]";
 	}
 
 	

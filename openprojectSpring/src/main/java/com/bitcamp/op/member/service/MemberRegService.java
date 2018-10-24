@@ -11,9 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bitcamp.op.jdbc.ConnectionProvider;
-import com.bitcamp.op.jdbc.JdbcUtil;
-import com.bitcamp.op.member.dao.JdbcTemplateMemberDao;
-import com.bitcamp.op.member.dao.MemberDao;
+import com.bitcamp.op.member.dao.MybatisMemberDao;
 import com.bitcamp.op.member.model.MemberInfo;
 
 public class MemberRegService {
@@ -21,8 +19,11 @@ public class MemberRegService {
 	/*@Autowired
 	private MemberDao memberDao;*/
 	
+	/*@Autowired
+	private JdbcTemplateMemberDao memberDao;*/
+	
 	@Autowired
-	private JdbcTemplateMemberDao memberDao;
+	private MybatisMemberDao memberDao;
 
 	private Connection conn;
 	

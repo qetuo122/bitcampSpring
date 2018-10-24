@@ -38,7 +38,8 @@ public class GuestBookListController {
 		
 		//view에 결과 데이터를 전달(공유)
 		modelAndView.addObject("viewData",viewData);
-		
+		System.out.println(viewData);
+		System.out.println(modelAndView);
 		return modelAndView;
 	}
 	

@@ -49,7 +49,7 @@ public class MemberLoginController {
 			//로그인이 정상처리 됐을경우
 			if(loginService.login(userId, password, session)) {
 				
-				modelAndView.setViewName("member/loginok");
+				modelAndView.setViewName("member/mypage");
 											//redirect:/
 			} else {
 				

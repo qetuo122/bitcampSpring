@@ -61,6 +61,12 @@
 		<beans:property name="password" value="tiger" />
 	</beans:bean>
 	
+	<!-- spring - mybatis 연동 설정 -->
+	<beans:bean class = "org.mybatis.spring.SqlSessionFactoryBean" id = "sqlSessionFactory">
+		<beans:property name="dataSource" ref = "dataSource"/>
+		<beans:property name="mapperLocations" value = "classpath:com/bitcamp/op/mapper/mybatis/*.xml"/>		
+	</beans:bean>
+	
 	<!-- PlatformTransactionManager 빈 설정 -->
 	<beans:bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> 
 		<beans:property name="dataSource" ref="dataSource" /> 
@@ -71,18 +77,30 @@
 	<!-- JDBCTemplate 빈 등록 -->
 	<beans:bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate" p:dataSource-ref="dataSource" />
 	
+	<!-- SqlSessionTemplate 빈 등록 -->
+	
+	<beans:bean id = "sqlSession" class = "org.mybatis.spring.SqlSessionTemplate">
+		<beans:constructor-arg index = "0" ref = "sqlSessionFactory"/>
+	</beans:bean>
+	
 	<!-- memberDao 등록 -->
 	<beans:bean id = "memberDao" class = "com.bitcamp.op.member.dao.MemberDao"/>
-	<beans:bean id = "messageDao" class = "com.bitcamp.op.message.dao.MessageDao"/>
 	<beans:bean id = "jdbcTemplateMemberDao" class = "com.bitcamp.op.member.dao.JdbcTemplateMemberDao"/>
-	<beans:bean id = "jdbcTemplateMessageDao" class = "com.bitcamp.op.message.dao.JdbcTemplateMessageDao"/>
+	<beans:bean id = "mybatisMemberDao" class = "com.bitcamp.op.member.dao.MybatisMemberDao"/>
 	
-	<!-- 서비스 등록 -->
+	<!-- messageDao 등록 -->
+	<beans:bean id = "messageDao" class = "com.bitcamp.op.message.dao.MessageDao"/>
+	<beans:bean id = "jdbcTemplateMessageDao" class = "com.bitcamp.op.message.dao.JdbcTemplateMessageDao"/>
+	<beans:bean id = "mybatisMessageDao" class = "com.bitcamp.op.message.dao.MybatisMessageDao"/>
+	
+	<!-- member 서비스 등록 -->
 	<beans:bean id = "memberRegService" class = "com.bitcamp.op.member.service.MemberRegService"/>
 	<beans:bean id = "memberLoginService" class = "com.bitcamp.op.member.service.MemberLoginService"/>
 	<beans:bean id = "memberListService" class = "com.bitcamp.op.member.service.MemberListService"/>
 	<beans:bean id = "memberDeleteService" class = "com.bitcamp.op.member.service.MemberDeleteService"/>
 	<beans:bean id = "memberModiService" class = "com.bitcamp.op.member.service.MemberModiService"/>
+	
+	<!-- message 서비스 등록 -->
 	<beans:bean id = "deleteMessageService" class = "com.bitcamp.op.message.service.DeleteMessageService"/>
 	<beans:bean id = "getMessageListService" class = "com.bitcamp.op.message.service.GetMessageListService"/>
 	<beans:bean id = "getMessageService" class = "com.bitcamp.op.message.service.GetMessageService"/>

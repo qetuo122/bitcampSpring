@@ -7,26 +7,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bitcamp.op.jdbc.ConnectionProvider;
 import com.bitcamp.op.jdbc.JdbcUtil;
-import com.bitcamp.op.member.model.MemberInfo;
-import com.bitcamp.op.message.dao.JdbcTemplateMessageDao;
-import com.bitcamp.op.message.dao.MessageDao;
+import com.bitcamp.op.message.dao.MybatisMessageDao;
 import com.bitcamp.op.message.model.Message;
 
 
 public class WriteMessageService {
 	
-	@Autowired
-	MessageDao messageDao;
+	/*@Autowired
+	MessageDao messageDao;*/
 	
 	/*@Autowired
 	JdbcTemplateMessageDao messageDao;*/
+	
+	@Autowired
+	private MybatisMessageDao messageDao;
 
 	public void write(Message message, String userId) throws ServiceException {
 		Connection conn = null;
 		try {
 			conn = ConnectionProvider.getConnection();
 			
-			messageDao.insert(conn, message, userId);
+			message.setUserid_member(userId);
+			messageDao.insert(message);
 			
 			
 		} catch (SQLException e) {

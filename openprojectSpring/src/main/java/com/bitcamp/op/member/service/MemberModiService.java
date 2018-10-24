@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bitcamp.op.jdbc.ConnectionProvider;
 import com.bitcamp.op.jdbc.JdbcUtil;
-import com.bitcamp.op.member.dao.JdbcTemplateMemberDao;
+import com.bitcamp.op.member.dao.MybatisMemberDao;
 import com.bitcamp.op.member.model.MemberInfo;
 
 public class MemberModiService {
@@ -19,8 +19,11 @@ public class MemberModiService {
 	/*@Autowired
 	MemberDao memberDao;*/
 	
+	/*@Autowired
+	private JdbcTemplateMemberDao memberDao;*/
+	
 	@Autowired
-	private JdbcTemplateMemberDao memberDao;
+	private MybatisMemberDao memberDao;
 	
 	Connection conn = null;
 	
@@ -65,7 +68,7 @@ public class MemberModiService {
 		try {
 			
 			conn.setAutoCommit(false);
-			resultCnt = memberDao.updateMember(conn, memberInfo);
+			resultCnt = memberDao.updateMember(memberInfo);
 		
 			conn.commit();
 		} catch (Exception e) {

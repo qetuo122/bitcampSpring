@@ -76,6 +76,8 @@ public class MemberRegController {
 			modelAndView.setViewName("member/regfail");
 			e.printStackTrace();
 			
+		} catch (Exception e) {
+			modelAndView.setViewName("member/regfail");
 		}
 		
 		modelAndView.addObject("MemberInfo",member);
