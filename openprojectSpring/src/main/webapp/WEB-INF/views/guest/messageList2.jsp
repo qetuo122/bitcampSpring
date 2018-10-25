@@ -20,19 +20,18 @@
 		float : left;
 	}
 	#bookUl{
-		background-color : lightsteelblue;
+		background-color : yellow;
 		padding : 10px;
 		text-align : center;
 		width : 180px;
 		height : 180px;
-		border : 2px solid #8e8e8e;
+		border : 1px solid #8e8e8e;
 		margin-left : 20px;
 		list-style : none;
 		margin-bottom : 15px;
 	}
 	textarea {
 		margin-top : 5px;
-		margin-bottom : 5px;
 		height : 100px;
 	}
 	#num{
@@ -42,47 +41,36 @@
 		margin-top : 10px;
 		margin-left : 20px;
 	}
-	#messageBtn{
-		color : white;
-		background-color : black;
-		border : 1px solid black;
-		text-decoration : none;
-		padding : 5px;
-	}
-	#messageBtn:hover {
-	background-color: #8e8e8e;
-	cursor: pointer;
-}
 </style>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 	<h1 id = "bookTitle">방명록</h1>
-	<br>
+	
 	
 	<c:if test = "${viewData.isEmpty()}">
 	작성된 방명록 메세지가 없습니다.
 	</c:if>
-	
-	<div id = "wrap">
-	<c:forEach var = "message" items = "${viewData.messageList}">
-		<div id = "bookUlWrap">	
+	<c:if test = "${!viewData.isEmpty()}">
+		<c:forEach var = "message" items = "${viewData.messageList}">
+		
 		<ul id = "bookUl">
 			<li>메시지 번호 : ${message.message_id} </li>
-			<li>아이디 : ${message.userid_member} </li>
-			<li><textarea readonly cols = "25">${message.message}</textarea></li>
-			<li><a href = "view?id=${message.message_id}" id = "messageBtn">상세보기</a>
+			<li>작성자 아이디 : ${message.userid_member} </li>
+			<li>메시지 내용 : ${message.message}</li>
+			<li><a href = "view?id=${message.message_id}">[상세보기]</a>
 				<c:if test="${message.userid_member == loginInfo.userId}">
-				<a href = "delete?id=${message.message_id}" id = "messageBtn">삭제하기</a>
+				<a href = "delete?id=${message.message_id}">[삭제하기]</a>
 				</c:if></li>
 		</ul>
-		</div>
+		
 		</c:forEach>
-	</div>
+		
+		<c:forEach var = "num" begin = "1" end = "${viewData.pageTotalCount}">
+			<a href = "messageList?page=${num}" id = "num">[${num}]</a>
+		</c:forEach>
+	</c:if>
+	<h2><a href = "write"  id = "goWrite">[방명록쓰기]</a></h2>
 	
 </body>
-
-<script>
-	
-</script>
 </html>
