@@ -5,6 +5,7 @@
 		<!-- namepsace는 필수로 정해줘야함 -->
 <mapper namespace = "com.bitcamp.op.mapper.mybatis.MessageMapper">
 	
+	<!-- 자동증가를 사용할 경우 keyProperty를 사용  -->
 	<insert id="insertMessage" 
 		parameterType="com.bitcamp.op.message.model.Message"
 		useGeneratedKeys="true" keyProperty="idx">
@@ -35,8 +36,10 @@
 	
 	</select>
 	
-	<delete id = "deleteMessage" 
-	parameterType = "com.bitcamp.op.message.model.Message">
+	<!-- resultType은 결과값을 저장할 타입을 지정하는것 -->
+	<!-- parameterType은 파라미터로 1개의 값을 불러올땐 써주지 않아도 
+	 자동으로 String혹은 int로 들어감 but 값을 여러개 받아올경우 타입 지정해줘야함 -->
+	<delete id = "deleteMessage">
 	
 	delete from guestbook_message where message_id = #{message_id}
 	

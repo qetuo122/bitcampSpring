@@ -26,9 +26,11 @@
 		height : 300px;
 		margin-bottom : 10px;
 	}
-	#messageDiv {
-	
+	#messageTitle{
+		margin-right : 7px;
+		float : left;
 	}
+	
 </style>
 </head>
 <body>
@@ -40,7 +42,7 @@
 	<form method="post" id = "writeForm">
 		<div>아이디 : <input id = "userId" name="userId" value="${loginInfo.userId}" readonly/></div>
 		<div>작성자 : <input id = "userName" name="userName" value = "${loginInfo.userName}" readonly/></div>
-		<div id = "messageDiv">메시지 :  <textarea id = "message" name="message" cols="30" row="3"></textarea></div>
+		<div><p id = "messageTitle"> 메시지 :</p><textarea id = "message" name="message" cols="30" row="3"></textarea></div>
 		 
 		<input type="submit" value="메시지 남기기" />
 	</form>
