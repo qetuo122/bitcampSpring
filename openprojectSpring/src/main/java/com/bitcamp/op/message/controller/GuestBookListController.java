@@ -9,7 +9,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bitcamp.op.message.model.MessageListView;
 import com.bitcamp.op.message.service.GetMessageListService;
-import com.bitcamp.op.message.service.ServiceException;
 
 
 @Controller
@@ -19,7 +18,7 @@ public class GuestBookListController {
 	private GetMessageListService service;
 	
 	@RequestMapping("/guest/messageList")   //guest/list?page=1의 형식
-	public ModelAndView getGuestList(HttpServletRequest request) throws ServiceException {
+	public ModelAndView getGuestList(HttpServletRequest request){
 		
 		String pageNumberStr = request.getParameter("page");
 		int pageNumber = 1;

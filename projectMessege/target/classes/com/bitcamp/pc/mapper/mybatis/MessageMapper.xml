@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+				"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+				
+		<!-- namepsace는 필수로 정해줘야함 -->
+<mapper namespace = "com.bitcamp.op.mapper.mybatis.MessageMapper">
+
+	<!-- 자동증가를 사용할 경우 keyProperty를 사용  -->
+	<insert id="insertMessage" 
+		parameterType="com.bitcamp.pc.message.model.Message"
+		useGeneratedKeys="true" keyProperty="idx">
+			<!-- member테이블에 있는 컬럼명을 입력한다. -->
+	insert into message (messageTitle,messageCon, userId, adminId)
+	value (#{messageTitle}, #{messageCon}, #{userId}, #{adminId})
+			<!-- memberInfo에 있는 변수명을 입력해준다. -->
+	</insert>
+	
+	<select id="selectList" 
+	resultType = "com.bitcamp.pc.message.model.Message">
+	
+	select * from message order by messageDate desc where userId = #{userId}
+	
+	</select>
+	
+	<select id="selectOne"
+	resultType = "com.bitcamp.pc.message.model.Message">
+	
+	select * from message where messageId = #{messageId}
+	
+	</select>
+	
+	<delete id="deleteMessage">
+	
+	delete from message where messageid = #{messageid}
+	
+	</delete>
+
+</mapper>

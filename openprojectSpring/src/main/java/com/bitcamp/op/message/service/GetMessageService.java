@@ -1,13 +1,9 @@
 package com.bitcamp.op.message.service;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.bitcamp.op.jdbc.ConnectionProvider;
-import com.bitcamp.op.message.dao.JdbcTemplateMessageDao;
-import com.bitcamp.op.message.dao.MessageDao;
 import com.bitcamp.op.message.dao.MybatisMessageDao;
 import com.bitcamp.op.message.model.Message;
 
