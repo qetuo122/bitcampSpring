@@ -1,6 +1,5 @@
 package com.bitcamp.pc.message;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -15,18 +14,18 @@ public class MybatisMessageDao {
 	
 	private String mapperPath = "com.bitcamp.pc.mapper.mybatis.MessageMapper.";
 	
-	public int insert(Message message) throws SQLException {
+	public int insert(Message message) {
 
 		return sqlSessionTemplate.update(mapperPath + "insertMessage", message);
 
 	}
 	
-	public List<Message> selectList(Message message){
+	public List<Message> selectList(){
 		
-		return sqlSessionTemplate.selectList(mapperPath + "selectList", message);
+		return sqlSessionTemplate.selectList(mapperPath + "selectList");
 	}
 	
-	public Message selectOne(int messageId) {
+	public Message selectOne(String messageId) {
 		
 		return sqlSessionTemplate.selectOne(mapperPath + "selectOne", messageId);
 	}

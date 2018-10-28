@@ -16,14 +16,14 @@ public class MessageDetailController {
 	private MessageDetailService service;
 	
 	@RequestMapping("/message/detail")
-	public String detail(@RequestParam("messageId") int messageId,
+	public String detail(@RequestParam("messageId") String messageId,
 			Model model) {
 		
 		Message message = service.select(messageId);
 		
-		model.addAttribute("data",message);
+		model.addAttribute("detail",message);
 		
-		return "message/detail";
+		return "redirect:/message/messageList";
 	}
 
 }

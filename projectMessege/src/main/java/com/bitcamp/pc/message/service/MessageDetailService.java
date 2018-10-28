@@ -10,7 +10,7 @@ public class MessageDetailService {
 	@Autowired
 	private MybatisMessageDao messageDao;
 	
-	public Message select(int messageId) {
+	public Message select(String messageId) {
 		
 		return messageDao.selectOne(messageId);
 		

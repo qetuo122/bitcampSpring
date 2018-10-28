@@ -8,17 +8,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.bitcamp.pc.message.service.MessageDeleteService;
 
 @Controller
-@RequestMapping("message/delete")
 public class MessageDeleteController {
 	
 	@Autowired
 	private MessageDeleteService service;
 	
+	@RequestMapping("/message/delete")
 	public String delete(@RequestParam("messageId") int messageId) {
 		
 		service.delete(messageId);
 		
-		return "message/delete";
+		return "redirect:/message/messageList";
 	}
 
 }

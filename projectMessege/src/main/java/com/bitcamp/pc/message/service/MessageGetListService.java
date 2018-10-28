@@ -12,9 +12,9 @@ public class MessageGetListService {
 	@Autowired
 	private MybatisMessageDao messageDao;
 	
-	public List<Message> getMessage(Message message) {
+	public List<Message> getMessage() {
 		
-		List<Message> list = messageDao.selectList(message);
+		List<Message> list = messageDao.selectList();
 		
 		return list;
 	}

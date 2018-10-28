@@ -1,6 +1,5 @@
 package com.bitcamp.pc.message.service;
 
-import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,20 +13,7 @@ public class MessageWriteService {
 	
 	public void write(Message message, String userId) {
 		
-		try {
-			
 			message.setUserId(userId);
-			
 			messageDao.insert(message);
-		
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
-		
-		} finally {
-			
-		
-		}
 	}
-	
 }

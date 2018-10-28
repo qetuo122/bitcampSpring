@@ -8,7 +8,6 @@ public class Message {
 	private String messageTitle;
 	private String messageCon;
 	private String userId;
-	private String adminId;
 	private Timestamp messageDate;
 	
 	public int getMessageId() {
@@ -35,12 +34,6 @@ public class Message {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	public String getAdminId() {
-		return adminId;
-	}
-	public void setAdminId(String adminId) {
-		this.adminId = adminId;
-	}
 	public Timestamp getMessageDate() {
 		return messageDate;
 	}
@@ -50,7 +43,7 @@ public class Message {
 	@Override
 	public String toString() {
 		return "Message [messageId=" + messageId + ", messageTitle=" + messageTitle + ", messageCon=" + messageCon
-				+ ", userId=" + userId + ", adminId=" + adminId + "]";
+				+ ", userId=" + userId + "]";
 	}
 	
 	
